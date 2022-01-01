@@ -8,6 +8,9 @@ import Loader from './components/Loader'
 function App() {
   const [loading, setLoading] = useState(true)
   const [listings, setListings] = useState(null)
+  const [listingsCount, setListingsCount] = useState(0)
+  const [totalPages, setTotalPages] = useState(0)
+  const [currentPage, setCurrentPage] = useState(0)
 
   const API_KEY = 'daa03fdcd151c847dbb9e1008f179e84'
   const API_BASE_URL = 'https://api.themoviedb.org/3'
@@ -19,27 +22,40 @@ function App() {
   }
 
   useEffect(() => {
-    const fetchListings = async () => {
-      try {
-        fetch(API_URLS.latest_movies_url)
-          .then((response) => response.json())
-          .then((listings) => {
-            setListings(listings.results)
-            setLoading(false)
-          })
-      } catch (error) {
-        // log error
-      }
-    }
-    fetchListings()
+    fetchListings(API_URLS.latest_movies_url)
   }, [])
+
+  const fetchListings = async (url) => {
+    try {
+      fetch(url)
+        .then((response) => response.json())
+        .then((listings) => {
+          setCurrentPage(listings.page)
+          setTotalPages(listings.total_pages)
+          setListingsCount(listings.total_results)
+          setListings(listings.results)
+          setLoading(false)
+        })
+    } catch (error) {
+      // log error
+    }
+  }
 
   return (
     <div className='App'>
       <Header></Header>
       <main id='maincontent'>
         <MoviesHero></MoviesHero>
-        {loading ? <Loader /> : <MoviesList listings={listings}></MoviesList>}
+        {loading ? (
+          <Loader />
+        ) : (
+          <MoviesList
+            currentPage={currentPage}
+            totalPages={totalPages}
+            listingsCount={listingsCount}
+            listings={listings}
+          ></MoviesList>
+        )}
       </main>
       <Footer></Footer>
     </div>
