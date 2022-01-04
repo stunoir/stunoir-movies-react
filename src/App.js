@@ -28,21 +28,30 @@ function App() {
     // eslint-disable-next-line
   }, [])
 
+  const getAPIData = async (url) => {
+    const response = await fetch(url)
+    if (response.status !== 200) throw new Error('Cannot get data')
+    const data = await response.json()
+    return data
+  }
+
   //== fetch the movies from the API using the passed URL
   const fetchListings = (url) => {
     try {
-      fetch(url)
-        .then((response) => response.json())
+      getAPIData(url)
         .then((listings) => {
           setCurrentPage(listings.page)
           setTotalPages(listings.total_pages)
           setListingsCount(listings.total_results)
           setListings(listings.results)
           setLoading(false)
+          setSearchUrl(url)
         })
-      setSearchUrl(url)
+        .catch((error) => {
+          console.error('Rejected: ', error)
+        })
     } catch (error) {
-      // log error
+      console.error('Rejected: ', error)
     }
   }
 
