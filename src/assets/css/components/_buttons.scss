@@ -38,7 +38,7 @@
   &:hover,
   &:focus {
     color: #fff;
-    background-color: $col-brand-black;
+    background-color: lighten($col-brand-black, 20%);
   }
 
   &.is-active {
@@ -46,4 +46,9 @@
     background-color: lighten($col-brand-black, 20%);
     box-shadow: 0 5px 5px rgba(#000, 0.2);
   }
+}
+
+.btn-toprated {
+  padding: 0.7rem 1rem;
+  height: 100%;
 }

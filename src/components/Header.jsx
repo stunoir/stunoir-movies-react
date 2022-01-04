@@ -1,6 +1,11 @@
 import Logo from '../assets/img/layout/logo.png'
 
-function Header() {
+function Header({ query, setQuery, handleSearch, handleTopMovies }) {
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    handleSearch()
+  }
+
   return (
     <header className='wrapper-header'>
       <a className='skip-to-content-link' href='#maincontent'>
@@ -15,16 +20,23 @@ function Header() {
             </a>
           </div>
           <div className='large-6 medium-4 small-1 text-right cell'>
-            <a className='btn-main btn-toprated hide-for-small-only' href='/'>
+            <button className='btn-main btn-toprated hide-for-small-only' onClick={handleTopMovies}>
               Top Rated
-            </a>
+            </button>
           </div>
           <div className='large-4 medium-4 small-6 cell'>
-            <form className='form-search'>
+            {/* search form */}
+            <form onSubmit={handleSubmit} className='form-search'>
               <label htmlFor='txtSearchInput' className='show-for-sr'>
                 Search for a movie
               </label>
-              <input id='txtSearchInput' placeholder='Search here...' type='text' />
+              <input
+                id='txtSearchInput'
+                onChange={(e) => setQuery(e.target.value)}
+                value={query}
+                placeholder='Search here...'
+                type='text'
+              />
               <button id='cmdSearch' type='submit' className='btn-search'>
                 <span className='mmt-icon-search'></span>
                 <span className='show-for-sr'>Search</span>

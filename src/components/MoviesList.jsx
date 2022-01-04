@@ -1,6 +1,11 @@
 import MovieItem from './MovieItem'
 
-function MoviesList({ currentPage, totalPages, listingsCount, listings }) {
+function MoviesList({ currentPage, totalPages, listingsCount, listings, handlePaging }) {
+  //== handle pagination in App.js
+  const handlePager = (e, direction) => {
+    handlePaging(direction)
+  }
+
   return (
     <div className='wrapper-list'>
       <div className='grid-container container-movies'>
@@ -17,14 +22,36 @@ function MoviesList({ currentPage, totalPages, listingsCount, listings }) {
                     <p className='results-page-info'>
                       Pages {currentPage} of {totalPages}
                     </p>
-                    <button type='button' className='btn-page'>
-                      <span className='mmt-icon-back-arrow'></span>
-                      <span className='show-for-sr'>Previous page</span>
-                    </button>
-                    <button type='button' className='btn-page'>
-                      <span className='mmt-icon-forward-arrow'></span>
-                      <span className='show-for-sr'>Next page</span>
-                    </button>
+                    {/* prev button */}
+                    {currentPage > 1 ? (
+                      <button
+                        onClick={(e) => {
+                          handlePager(e, 'prev')
+                        }}
+                        type='button'
+                        className='btn-page'
+                      >
+                        <span className='mmt-icon-back-arrow'></span>
+                        <span className='show-for-sr'>Previous page</span>
+                      </button>
+                    ) : (
+                      ''
+                    )}
+                    {/* next button */}
+                    {currentPage < totalPages ? (
+                      <button
+                        onClick={(e) => {
+                          handlePager(e, 'next')
+                        }}
+                        ttype='button'
+                        className='btn-page'
+                      >
+                        <span className='mmt-icon-forward-arrow'></span>
+                        <span className='show-for-sr'>Next page</span>
+                      </button>
+                    ) : (
+                      ''
+                    )}
                   </div>
                 </div>
               </div>
