@@ -227,6 +227,8 @@ a { color: #fff; }
 
 .container-movies { margin-top: -12rem; }
 
+.site-loader { padding: 4rem 0; text-align: center; }
+
 /* Small only */
 @media screen and (max-width: 39.9375em) { .section-main { padding: 1rem; }
   .card-movie .img { height: 200px; }

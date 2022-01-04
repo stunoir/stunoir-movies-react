@@ -38,18 +38,14 @@ function App() {
   //== fetch the movies from the API using the passed URL
   const fetchListings = (url) => {
     try {
-      getAPIData(url)
-        .then((listings) => {
-          setCurrentPage(listings.page)
-          setTotalPages(listings.total_pages)
-          setListingsCount(listings.total_results)
-          setListings(listings.results)
-          setLoading(false)
-          setSearchUrl(url)
-        })
-        .catch((error) => {
-          console.error('Rejected: ', error)
-        })
+      getAPIData(url).then((listings) => {
+        setCurrentPage(listings.page)
+        setTotalPages(listings.total_pages)
+        setListingsCount(listings.total_results)
+        setListings(listings.results)
+        setLoading(false)
+        setSearchUrl(url)
+      })
     } catch (error) {
       console.error('Rejected: ', error)
     }
@@ -108,7 +104,7 @@ function App() {
           <Loader />
         ) : (
           <div>
-            <MoviesHero listings={listings}></MoviesHero>
+            <MoviesHero listing={listings.slice(0, 1)}></MoviesHero>
             <MoviesList
               currentPage={currentPage}
               totalPages={totalPages}

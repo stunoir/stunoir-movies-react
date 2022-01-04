@@ -1,4 +1,4 @@
-function MoviesHero({ listings }) {
+function MoviesHero({ listing }) {
   const API_IMG_URL = 'https://image.tmdb.org/t/p/w500'
 
   //== return nice year format
@@ -20,7 +20,7 @@ function MoviesHero({ listings }) {
 
   return (
     <div className='wrapper-hero'>
-      {listings.slice(0, 1).map((movie) => (
+      {listing.map((movie) => (
         <div key={movie.id}>
           <div className='bg-img' style={{ backgroundImage: `url(${getBackdropImage(movie.backdrop_path)})` }}></div>
           <div className='grid-container'>
