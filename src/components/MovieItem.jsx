@@ -1,4 +1,4 @@
-function MovieItem({ id, title, poster_path, release_date }) {
+function MovieItem({ id, title, poster_path, release_date, handleOpenPanel }) {
   const API_IMG_URL = 'https://image.tmdb.org/t/p/w500'
 
   //== return nice year format
@@ -13,9 +13,21 @@ function MovieItem({ id, title, poster_path, release_date }) {
     return poster_path != null ? API_IMG_URL + poster_path : require('../assets/img/layout/empty-poster.jpg')
   }
 
+  //== open info panel
+  const openPanel = (e, movieId) => {
+    e.preventDefault()
+    handleOpenPanel(movieId)
+  }
+
   return (
     <div className='cell'>
-      <a href='/' className='card-movie'>
+      <a
+        href='/'
+        onClick={(e) => {
+          openPanel(e, id)
+        }}
+        className='card-movie'
+      >
         <span className='img' style={{ backgroundImage: `url(${getImage(poster_path)})` }}></span>
         <span className='info'>
           <span className='title'>{title}</span>

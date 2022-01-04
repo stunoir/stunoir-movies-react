@@ -179,9 +179,9 @@ a { color: #fff; }
 
 .card-container { animation-duration: 0.8s; animation-fill-mode: both; animation-name: fadeInUp; animation-delay: 0.3s; }
 
-.panel-movie-info { position: fixed; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.7); width: 100%; height: 100%; z-index: 10; display: none; }
+.panel-movie-info { position: fixed; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.7); width: 100%; height: 100%; z-index: 10; }
 
-.panel-movie-info .content { position: absolute; right: 0; top: 0; background: #000; background: linear-gradient(180deg, #403954 40%, #000 100%); width: 50%; height: 100%; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.8); padding: 2rem 3rem 3rem 3rem; opacity: 0; transition: opacity 3s; }
+.panel-movie-info .content { position: absolute; right: 0; top: 0; background: #000; background: linear-gradient(180deg, #403954 40%, #000 100%); width: 50%; height: 100%; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.8); padding: 2rem 3rem 3rem 3rem; opacity: 1; transition: opacity 3s; }
 
 .panel-movie-info .content .movie-title { color: #fff; font-weight: 700; font-size: 2rem; margin-bottom: 0.2rem; line-height: 1.1; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9); }
 
